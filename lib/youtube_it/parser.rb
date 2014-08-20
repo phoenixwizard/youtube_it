@@ -53,7 +53,8 @@ class YouTubeIt
         def parse_entry(entry)
           author = YouTubeIt::Model::Author.new(
             :name => (entry.at("author/name").text rescue nil),
-            :uri  => (entry.at("author/uri").text rescue nil)
+            :uri  => (entry.at("author/uri").text rescue nil),
+            :thumbnail_url => (entry.at("media|thumbnail").attribute('url') rescue nil)
           )
           YouTubeIt::Model::Comment.new(
             :author    => author,
